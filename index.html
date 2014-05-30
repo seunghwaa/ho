@@ -1,32 +1,37 @@
-<html>
+﻿<html>
   <head>
     <title>
-    어???
+    어어어어엉???
     </title>
     <script src="//cdnjs.cloudflare.com/ajax/libs/phaser/2.0.4/phaser.min.js"></script>
   </head>
   
   <body>
     <script>
-    var game = new Phaser.Game(800, 600, Phaser.CANVAS, '', { preload: preload, create: create });
+   var game = new Phaser.Game(800, 800, Phaser.AUTO, '', { preload: preload, create: create });
 
 function preload() {
 
-    //  You can fill the preloader with as many assets as your game requires
+    //  37x45 is the size of each frame
 
-    //  Here we are loading an image. The first parameter is the unique
-    //  string by which we'll identify the image later in our code.
+    //  There are 18 frames in the PNG - you can leave this value blank if the frames fill up the entire PNG, but in this case there are some
+    //  blank frames at the end, so we tell the loader how many to load
 
-    //  The second parameter is the URL of the image (relative)
-    game.load.image('einstein', 'http://examples.phaser.io/assets/pics/ra_einstein.png');
-
+    game.load.spritesheet('mummy', 'ani.jpg', 340, 733 , 6);
 }
 
 function create() {
 
-    //  This creates a simple sprite that is using our loaded image and
-    //  displays it on-screen
-    game.add.sprite(0, 0, 'einstein');
+    var mummy = game.add.sprite(300, 0, 'mummy');
+
+    //  Here we add a new animation called 'walk'
+    //  Because we didn't give any other parameters it's going to make an animation from all available frames in the 'mummy' sprite sheet
+    mummy.animations.add('walk');
+
+    //  And this starts the animation playing by using its key ("walk")
+    //  30 is the frame rate (30fps)
+    //  true means it will loop when it finishes
+    mummy.animations.play('walk', 5, true);
 
 }
     </script>
